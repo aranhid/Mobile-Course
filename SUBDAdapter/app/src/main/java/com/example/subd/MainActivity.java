@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void showAdd(View view) {
+    public void showAdd(View view) { // TODO: изменить способ переключения состояния
 
         if (title.getVisibility() == View.GONE) {
             title.setVisibility(View.VISIBLE);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showSort(View view) {
+    public void showSort(View view) { // TODO: изменить способ переключения состояния
 
         if (sortYear.getVisibility() == View.GONE) {
             sortYear.setVisibility(View.VISIBLE);
