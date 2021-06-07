@@ -1,4 +1,5 @@
 package com.example.subd;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String table = "playlist";
 
     int total;
-    
+
     DBHelperWithLoader helper1;
     SQLiteDatabase musicDB;
 
@@ -72,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
         }
         wholeDuration.setText(durationFormat(total));
 
-        int[] views = { R.id.itemId, R.id.itemAuthor, R.id.itemTitle, R.id.itemYear, R.id.itemDuration };
+        int[] views = {R.id.itemId, R.id.itemAuthor, R.id.itemTitle, R.id.itemYear, R.id.itemDuration};
 
-        adapter = new SimpleCursorAdapter(this, R.layout.playlist_item, tunes, playlist_fields, views, 0 );
+        adapter = new SimpleCursorAdapter(this, R.layout.playlist_item, tunes, playlist_fields, views, 0);
         lv.setAdapter(adapter);
     }
 
@@ -110,63 +112,29 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void showAdd(View view) { // TODO: изменить способ переключения состояния
+    public void showAdd(View view) {
+        ArrayList<View> list = new ArrayList<>(Arrays.asList(
+                title, author, year, duration, add));
 
-        if (title.getVisibility() == View.GONE) {
-            title.setVisibility(View.VISIBLE);
-        } else {
-            title.setVisibility(View.GONE);
-        }
-
-        if (author.getVisibility() == View.GONE) {
-            author.setVisibility(View.VISIBLE);
-        } else {
-            author.setVisibility(View.GONE);
-        }
-
-        if (year.getVisibility() == View.GONE) {
-            year.setVisibility(View.VISIBLE);
-        } else {
-            year.setVisibility(View.GONE);
-        }
-
-        if (duration.getVisibility() == View.GONE) {
-            duration.setVisibility(View.VISIBLE);
-        } else {
-            duration.setVisibility(View.GONE);
-        }
-
-        if (add.getVisibility() == View.GONE) {
-            add.setVisibility(View.VISIBLE);
-        } else {
-            add.setVisibility(View.GONE);
-        }
+        showViews(list);
     }
 
-    public void showSort(View view) { // TODO: изменить способ переключения состояния
+    public void showSort(View view) {
+        ArrayList<View> list = new ArrayList<>(Arrays.asList(
+                sortYear, sortTitle, sortDuration, sortAuthor));
 
-        if (sortYear.getVisibility() == View.GONE) {
-            sortYear.setVisibility(View.VISIBLE);
-        } else {
-            sortYear.setVisibility(View.GONE);
-        }
+        showViews(list);
+    }
 
-        if (sortTitle.getVisibility() == View.GONE) {
-            sortTitle.setVisibility(View.VISIBLE);
-        } else {
-            sortTitle.setVisibility(View.GONE);
-        }
-
-        if (sortDuration.getVisibility() == View.GONE) {
-            sortDuration.setVisibility(View.VISIBLE);
-        } else {
-            sortDuration.setVisibility(View.GONE);
-        }
-
-        if (sortAuthor.getVisibility() == View.GONE) {
-            sortAuthor.setVisibility(View.VISIBLE);
-        } else {
-            sortAuthor.setVisibility(View.GONE);
+    private  void showViews(ArrayList<View> views) {
+        for (View view : views) {
+            switch (view.getVisibility()) {
+                case View.VISIBLE:
+                    view.setVisibility(View.GONE);
+                    break;
+                case View.GONE:
+                    view.setVisibility(View.VISIBLE);
+            }
         }
     }
 
